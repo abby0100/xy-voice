@@ -1,7 +1,11 @@
 package com.baidu.android.voicedemo;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.util.AndroidRuntimeException;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +32,9 @@ public class ActivityWakeUp extends Activity {
             "\n";
 
     private EventManager mWpEventManager;
+	private WakeLock wakeLock;
+	private PowerManager pm;
+	private WakeLock wl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,7 @@ public class ActivityWakeUp extends Activity {
                     if ("wp.data".equals(name)) { // 每次唤醒成功, 将会回调name=wp.data的时间, 被激活的唤醒词在params的word字段
                         String word = json.getString("word");
                         txtLog.append("唤醒成功, 唤醒词: " + word + "\r\n");
+                        doWakeUp();
                     } else if ("wp.exit".equals(name)) {
                         txtLog.append("唤醒已经停止: " + params + "\r\n");
                     }
@@ -90,4 +98,67 @@ public class ActivityWakeUp extends Activity {
         // 停止唤醒监听
         //mWpEventManager.send("wp.stop", null, null, 0, 0);
     }
+    
+	private void doWakeUp() {
+		// TODO Auto-generated method stub
+		Log.d(TAG, "doWakeUp");
+		wakeUpScreenIfNeed();
+	}
+
+	public void wakeUpScreenIfNeed() {
+		pm =(PowerManager) getSystemService(Context.POWER_SERVICE);
+		if (pm.isScreenOn()) {
+			Log.d(TAG, "screen is already on");
+			return;
+		}
+		if (null == wl) {
+			wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, "bright");
+		}
+		Log.d(TAG, "going to acquire wake lock");
+	  	wl.acquire();
+	  	
+	  	wl.release();
+	  	//turnOffScreen();
+	}
+	
+	
+	private void turnOffScreen() {
+	  if (!pm.isScreenOn()) {
+	      Log.d(TAG, "screen is already off");
+	      return;
+	  }
+	  pm.goToSleep(3000 / 1000);
+	  if (null == wl) {
+		  wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, "bright");
+	  }
+	  wl.release();
+	}
+
+//    /** 
+//     * 获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行 
+//     */  
+//    private void acquireWakeLock() {  
+//    	Log.d(TAG, "acquireWakeLock");
+//    	
+//        wakeLock = null;
+//		if (null == wakeLock) {  
+//            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);  
+//            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK  
+//                    | PowerManager.ON_AFTER_RELEASE, getClass()  
+//                    .getCanonicalName());  
+//            if (null != wakeLock) {  
+//                Log.i(TAG, "call acquireWakeLock");  
+//                wakeLock.acquire();  
+//            }  
+//        }  
+//    }  
+//  
+//    // 释放设备电源锁  
+//    private void releaseWakeLock() {  
+//        if (null != wakeLock && wakeLock.isHeld()) {  
+//            Log.i(TAG, "call releaseWakeLock");  
+//            wakeLock.release();  
+//            wakeLock = null;  
+//        }  
+//    }
 }

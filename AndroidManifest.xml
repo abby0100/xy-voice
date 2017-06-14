@@ -1,12 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.baidu.speech.recognizerdemo"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0"
+    >
 
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="21" />
-
+      
     <instrumentation
             android:name="android.test.InstrumentationTestRunner"
             android:targetPackage="com.baidu.speech.recognizerdemo"
@@ -18,6 +19,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+<!--    	<uses-permission android:name="android.permission.DEVICE_POWER"/> -->
 
     <application
         android:icon="@drawable/ic_launcher"
