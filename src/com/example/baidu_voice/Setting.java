@@ -1,4 +1,4 @@
-package com.baidu.android.voicedemo;
+package com.example.baidu_voice;
 
 import com.example.baidu_voice.R;
 

@@ -59,7 +59,7 @@
         <!-- end : baidu speech sdk-->
 
         <activity
-                android:name="com.baidu.android.voicedemo.ActivityMain"
+                android:name="com.example.baidu_voice.ActivityMain"
                 android:configChanges="orientation|keyboardHidden|screenLayout"
                 android:theme="@android:style/Theme.DeviceDefault.Light"
                 android:screenOrientation="portrait">
@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.baidu.android.voicedemo.ApiActivity"
+                android:name="com.example.baidu_voice.ApiActivity"
                 android:label="普通模式(API方式和UI方式)"
                 android:configChanges="orientation|keyboardHidden|screenLayout"
                 android:theme="@android:style/Theme.DeviceDefault.Light"
@@ -82,7 +82,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.baidu.android.voicedemo.ActivityWakeUp"
+            android:name="com.example.baidu_voice.ActivityWakeUp"
             android:label="语音唤醒"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:theme="@android:style/Theme.DeviceDefault.Light"
@@ -94,7 +94,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.baidu.android.voicedemo.ActivityOffline"
+            android:name="com.example.baidu_voice.ActivityOffline"
             android:label="离线语法"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:theme="@android:style/Theme.DeviceDefault.Light"
@@ -107,7 +107,7 @@
         </activity>
 
         <activity
-            android:name="com.baidu.android.voicedemo.Setting"
+            android:name="com.example.baidu_voice.Setting"
             android:label="设置"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:theme="@android:style/Theme.DeviceDefault.Light"

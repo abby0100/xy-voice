@@ -1,4 +1,4 @@
-package com.baidu.android.voicedemo;
+package com.example.baidu_voice;
 
 public class Constant {
     public static final String EXTRA_KEY = "key";

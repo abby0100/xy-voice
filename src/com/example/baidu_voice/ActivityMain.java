@@ -1,4 +1,4 @@
-package com.baidu.android.voicedemo;
+package com.example.baidu_voice;
 
 import android.app.ListActivity;
 import android.content.Intent;
