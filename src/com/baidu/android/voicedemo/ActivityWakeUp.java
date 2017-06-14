@@ -13,7 +13,8 @@ import android.widget.TextView;
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
-import com.baidu.speech.recognizerdemo.R;
+import com.example.baidu_voice.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

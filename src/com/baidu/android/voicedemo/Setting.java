@@ -1,9 +1,10 @@
 package com.baidu.android.voicedemo;
 
+import com.example.baidu_voice.R;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.*;
-import com.baidu.speech.recognizerdemo.R;
 
 public class Setting extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 

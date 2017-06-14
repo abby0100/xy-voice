@@ -15,7 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.baidu.speech.VoiceRecognitionService;
-import com.baidu.speech.recognizerdemo.R;
+import com.example.baidu_voice.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

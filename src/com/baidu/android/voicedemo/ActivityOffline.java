@@ -14,7 +14,8 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.baidu.speech.VoiceRecognitionService;
-import com.baidu.speech.recognizerdemo.R;
+import com.example.baidu_voice.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
