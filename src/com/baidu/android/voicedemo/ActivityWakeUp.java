@@ -106,7 +106,9 @@ public class ActivityWakeUp extends Activity {
 	}
 
 	public void wakeUpScreenIfNeed() {
-		pm =(PowerManager) getSystemService(Context.POWER_SERVICE);
+		if (null == pm) {
+			pm =(PowerManager) getSystemService(Context.POWER_SERVICE);
+		}
 		if (pm.isScreenOn()) {
 			Log.d(TAG, "screen is already on");
 			return;
@@ -123,42 +125,17 @@ public class ActivityWakeUp extends Activity {
 	
 	
 	private void turnOffScreen() {
-	  if (!pm.isScreenOn()) {
-	      Log.d(TAG, "screen is already off");
-	      return;
-	  }
-	  pm.goToSleep(3000 / 1000);
-	  if (null == wl) {
-		  wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, "bright");
-	  }
-	  wl.release();
+		if (null == pm) {
+			pm =(PowerManager) getSystemService(Context.POWER_SERVICE);
+		}
+		if (!pm.isScreenOn()) {
+			Log.d(TAG, "screen is already off");
+			return;
+		}
+		pm.goToSleep(3000 / 1000);
+	//	  if (null == wl) {
+	//		  wl = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, "bright");
+	//	  }
+	//	  wl.release();
 	}
-
-//    /** 
-//     * 获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行 
-//     */  
-//    private void acquireWakeLock() {  
-//    	Log.d(TAG, "acquireWakeLock");
-//    	
-//        wakeLock = null;
-//		if (null == wakeLock) {  
-//            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);  
-//            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK  
-//                    | PowerManager.ON_AFTER_RELEASE, getClass()  
-//                    .getCanonicalName());  
-//            if (null != wakeLock) {  
-//                Log.i(TAG, "call acquireWakeLock");  
-//                wakeLock.acquire();  
-//            }  
-//        }  
-//    }  
-//  
-//    // 释放设备电源锁  
-//    private void releaseWakeLock() {  
-//        if (null != wakeLock && wakeLock.isHeld()) {  
-//            Log.i(TAG, "call releaseWakeLock");  
-//            wakeLock.release();  
-//            wakeLock = null;  
-//        }  
-//    }
 }
